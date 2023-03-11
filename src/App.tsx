@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Characters from './components/Characters';
+import CCreation from './components/CCreation';
+import Navbar from './components/Navbar';
+import Clans from './components/Clans';
 
 function App() {
+  const [characters, setCharacter] = useState(JSON.parse(localStorage.getItem("characters")) || [])
+
+  useEffect(() => {
+    localStorage.setItem('characters', JSON.stringify(characters))
+  }, [characters])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Characters characters={characters} 
+        setCharacter={setCharacter} />} />
+        <Route exact path='/creation' element={<CCreation setCharacter={setCharacter} />} />
+        <Route exact path='/clans' element={<Clans characters={characters} />} />
+      </Routes>
     </div>
   );
 }
