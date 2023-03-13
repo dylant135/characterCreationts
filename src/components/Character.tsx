@@ -1,8 +1,30 @@
 import React from "react";
+/**
+ * 
+ * @param props title={c.title}
+                            type={c.type}
+                            speed={c.speed}
+                            strength={c.strength}
+                            health={c.health}
+                            intelligence={c.intelligence}
+                            deleteCharacter={deleteCharacter}
+                            key={c.title}
+ * @returns 
+ */
 
-export default function Character(props) {
-    let characterType = props.type
-    let characterName = props.title
+type CharacterProps = {
+    title: string,
+    type: string,
+    speed: number,
+    strength: number,
+    health: number,
+    intelligence: number,
+    deleteCharacter?: Function
+}
+
+export default function Character(props : CharacterProps) {
+    let characterType : string = props.type
+    let characterName : string = props.title
 
     return (
         <div className="character">
@@ -14,7 +36,7 @@ export default function Character(props) {
             <h4>Strength: {props.strength}</h4>
             <h4>Health: {props.health}</h4>
             <h4>Intelligence: {props.intelligence}</h4>
-            {props.deleteCharacter && <button type="button" className="deleteButton" onClick={() => props.deleteCharacter(props.title)}>Delete Character</button>}
+            {props.deleteCharacter && <button type="button" className="deleteButton" onClick={() => props.deleteCharacter?.(props.title)}>Delete Character</button>}
         </div>
     )
 }

@@ -1,11 +1,27 @@
 import React from "react";
-import Character from "./components/Character";
+import Character from "./Character";
+/*
+openModal={openModal}
+                setOpenModal={setOpenModal}
+                fire={fire}
+                water={water}
+                earth={earth}
+                air={air}
+*/
+type ModalProps = {
+    fire: {}[],
+    water: {}[],
+    earth: {}[],
+    air: {}[],
+    openModal: boolean | string,
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export default function Modal(props) {
-    if(!props.openModal) return null
-    const contentType = props.openModal
+export default function Modal({ fire, water, earth, air, openModal, setOpenModal} : ModalProps) {
+    if(!openModal) return null
+    const contentType = openModal
     let content
-    content = props[contentType].map(c => {
+    content = [contentType].map(c => {
         return (<Character
         title={c.title}
         type={c.type}
@@ -16,7 +32,7 @@ export default function Modal(props) {
         key={c.title}
     />)
     })
-    if(props[contentType].length === 0) {
+    if([contentType].length === 0) {
         content = 'No Characters'
     }
 
