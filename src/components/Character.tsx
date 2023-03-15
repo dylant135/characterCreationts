@@ -1,16 +1,4 @@
 import React from "react";
-/**
- * 
- * @param props title={c.title}
-                            type={c.type}
-                            speed={c.speed}
-                            strength={c.strength}
-                            health={c.health}
-                            intelligence={c.intelligence}
-                            deleteCharacter={deleteCharacter}
-                            key={c.title}
- * @returns 
- */
 
 type CharacterProps = {
     title: string,

@@ -6,11 +6,21 @@ import CCreation from './components/CCreation';
 import Navbar from './components/Navbar';
 import Clans from './components/Clans';
 
+type CharacterType = {
+  title: string,
+      type: string,
+      speed: number,
+      strength: number,
+      health: number,
+      intelligence: number
+}
+
 function App() {
-  const [characters, setCharacter] = useState(JSON.parse(localStorage.getItem("characters")) || [])
+  const [characters, setCharacter] = useState<CharacterType[] | []>(JSON.parse(localStorage.getItem('characters') || ''))
 
   useEffect(() => {
-    localStorage.setItem('characters', JSON.stringify(characters))
+   localStorage.setItem('characters', JSON.stringify(characters))
+    
   }, [characters])
 
   return (

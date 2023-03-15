@@ -1,6 +1,19 @@
 import React, { useRef, useState } from "react";
 
-export default function CCreation(props) {
+type CharacterType = {
+    title: string,
+    type: string,
+    speed: number,
+    strength: number,
+    health: number,
+    intelligence: number
+}
+
+type CreationProps = {
+    setCharacter: React.Dispatch<React.SetStateAction<[] | CharacterType[]>>
+}
+
+export default function CCreation({ setCharacter} : CreationProps) {
     const [formData, setFormData] = useState({
         title: '',
         type: '',
@@ -56,7 +69,7 @@ export default function CCreation(props) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        props.setCharacter(prevState => {
+        setCharacter(prevState => {
             return [
                 ...prevState,
                 formData

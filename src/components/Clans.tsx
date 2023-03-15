@@ -1,36 +1,57 @@
 /* eslint-disable default-case */
 import React, { useEffect, useState } from "react";
-import Modal from "../Modal";
+import Modal from "./Modal";
 
-export default function Clans(props) {
-    const [fire, setFire] = useState([])
-    const [water, setWater] = useState([])
-    const [earth, setEarth] = useState([])
-    const [air, setAir] = useState([])
-    const [openModal, setOpenModal] = useState(false)
+
+type ClanProps = {
+    characters: {
+        title: string,
+        type: string,
+        speed: number,
+        strength: number,
+        health: number,
+        intelligence: number
+    }[]
+}
+
+type CharacterType = {
+    title: string,
+    type: string,
+    speed: number,
+    strength: number,
+    health: number,
+    intelligence: number
+}
+
+export default function Clans({ characters} : ClanProps) {
+    const [fire, setFire] = useState<CharacterType[]>([])
+    const [water, setWater] = useState<CharacterType[]>([])
+    const [earth, setEarth] = useState<CharacterType[]>([])
+    const [air, setAir] = useState<CharacterType[]>([])
+    const [openModal, setOpenModal] = useState<boolean | string>(false)
 
     useEffect(() => {
-       const findFire = props.characters.filter(f => f.type === 'fire')
-       if(findFire.length >= 0) {
+       const findFire = characters.filter(f => f.type === 'fire')
+       if(findFire.length > 0) {
         setFire(findFire)
        } 
 
-       const findWater = props.characters.filter(f => f.type === 'water')
+       const findWater = characters.filter(f => f.type === 'water')
        if(findWater.length >= 0) {
         setWater(findWater)
        } 
 
-       const findEarth = props.characters.filter(f => f.type === 'earth')
+       const findEarth = characters.filter(f => f.type === 'earth')
        if(findEarth.length >= 0) {
         setEarth(findEarth)
        } 
 
-       const findAir = props.characters.filter(f => f.type === 'air')
+       const findAir = characters.filter(f => f.type === 'air')
        if(findAir.length >= 0) {
         setAir(findAir)
        } 
 
-    }, [props.characters])
+    }, [characters])
 
     return (
         <div>

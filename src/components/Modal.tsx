@@ -14,14 +14,23 @@ type ModalProps = {
     earth: {}[],
     air: {}[],
     openModal: boolean | string,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<string | boolean>>
+}
+
+type CharacterProps = {
+    title: string,
+    type: string,
+    speed: number,
+    strength: number,
+    health: number,
+    intelligence: number
 }
 
 export default function Modal({ fire, water, earth, air, openModal, setOpenModal} : ModalProps) {
     if(!openModal) return null
     const contentType = openModal
     let content
-    content = [contentType].map(c => {
+    content = [contentType].map((c : CharacterProps) => {
         return (<Character
         title={c.title}
         type={c.type}

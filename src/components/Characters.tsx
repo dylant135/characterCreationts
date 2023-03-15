@@ -1,17 +1,38 @@
 import React, { useState } from "react";
 import Character from "./Character";
 
-export default function Characters(props) {
+type CharacterType = {
+    title: string,
+    type: string,
+    speed: number,
+    strength: number,
+    health: number,
+    intelligence: number
+}
+
+type CharactersProps = {
+    characters: {
+        title: string,
+        type: string,
+        speed: number,
+        strength: number,
+        health: number,
+        intelligence: number
+    }[],
+    setCharacter: React.Dispatch<React.SetStateAction<[] | CharacterType[]>>
+}
+
+export default function Characters({ characters, setCharacter} : CharactersProps) {
     const [search, setSearch] = useState('')
-    const filteredCharacters = props.characters.filter(item => {
+    const filteredCharacters = characters.filter(item => {
         const character = item.title
         return character.toLowerCase().includes(search.toLowerCase())
     })
 
 
-    function deleteCharacter(title) {
-        const newCharacters = props.characters.filter(c => c.title !== title)
-        props.setCharacter(newCharacters)
+    function deleteCharacter(title : string) {
+        const newCharacters = characters.filter(c => c.title !== title)
+        setCharacter(newCharacters)
     }
 
     return (
