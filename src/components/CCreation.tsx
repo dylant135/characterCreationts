@@ -32,42 +32,45 @@ export default function CCreation({ setCharacter} : CreationProps) {
     })
 
 
-    function handleChange(event) {
+    function handleChange(event : React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+        const e = event.target
         setFormData(prevState => {
             return {
                 ...prevState,
-                [event.target.name]: event.target.value
+                [e.name]: e.value
             }
         })
     }
 
-    function handleStatChange(event) {
+    function handleStatChange(event : React.ChangeEvent<HTMLInputElement>) {
+        const e = event.target
+        const value: number = e.value
         const stat = event.target.name
         if(event.target.value > ref.current[stat]) {
             //decrease
-            const num = event.target.value - ref.current[stat]
+            const num = value - ref.current[stat]
             let checkPoints = points
             checkPoints -= num
             if(checkPoints <= -1) {
                 return
             }
             setPoints(prevState => prevState -= num)
-            ref.current[stat] = event.target.value
+            ref.current[stat] = value
         } else if(event.target.value < ref.current[stat]) {
             //increase
-            const num = ref.current[stat] - event.target.value 
+            const num = ref.current[stat] - value 
             setPoints(prevState => prevState += num)
-            ref.current[stat] = event.target.value
+            ref.current[stat] = value
         }
         setFormData(prevState => {
             return {
                 ...prevState,
-                [event.target.name]: event.target.value
+                [e.name]: value
             }
         })
     }
 
-    function handleSubmit(event) {
+    function handleSubmit(event : React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setCharacter(prevState => {
             return [
