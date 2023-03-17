@@ -1,4 +1,205 @@
 * {
   margin: 0;
-  padding: 0'
+  padding: 0;
+}
+
+body {
+  background-color: #cad6e8;
+}
+
+h1 {
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 65px;
+}
+
+h5 {
+  font-size: 1.3em;
+}
+
+.center, h3, h4 {
+  text-align: center;
+}
+
+.characterName {
+  color: crimson;
+  overflow-wrap: break-word;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  margin-bottom: 150px;
+  background-color: #7a99c5;
+  opacity: 0.9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+}
+
+.navbtns {
+  text-decoration: none;
+  color: black;
+  padding: 7px;
+  font-size: 1.2em;
+}
+
+.navbtns:hover {
+  background-color: #455770;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.navContainer > * {
+  margin: 0 12px;
+}
+
+.active {
+  background-color: #455770;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+}
+
+form > * {
+  padding: 5px;
+  margin: 5px;
+  font-size: 1.2em;
+}
+
+.submitButton {
+  background-color: #7a99c5;
+  padding: 5px 0;
+  margin: 15px 0;
+}
+
+.submitButton:hover {
+  background-color: #455770;
+  cursor: pointer;
+}
+
+.character {
+  position: relative;
+  border: 2px solid red;
+  background-color: #7a99c5;
+  padding: 6px;
+  margin: 8px;
+  width: 175px;
+  height: 275px;
+  font-size: 1.3em;
+}
+
+.characters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.centerBar {
+  width: 100vw;
+  margin: auto;
+  text-align: center;
+}
+
+.searchBar {
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.deleteButton {
+  padding: 4px;
+  position: absolute;
+  bottom: 5px;
+  right: 40px;
+  background-color: #e57682;
+}
+
+.deleteButton:hover {
+  background-color: #7e101c;
+  cursor: pointer;
+}
+
+.clans {
+  width: 300px;
+  margin: auto;
+}
+
+.clans > div {
+  margin: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fire {
+  border: 2px solid crimson;
+}
+
+.fire:hover {
+  background-color: crimson;
+  cursor: pointer;
+}
+
+.water {
+  border: 2px solid #92a1e9;
+}
+
+.water:hover {
+  background-color: #92a1e9;
+  cursor: pointer;
+}
+
+.earth {
+  border: 2px solid #C19A6B;
+}
+
+.earth:hover {
+  background-color: #C19A6B;
+  cursor: pointer;
+}
+
+.air {
+  border: 2px solid #cfe4f9;
+}
+
+.air:hover {
+  background-color: #cfe4f9;
+  cursor: pointer;
+}
+
+.modal {
+  background-color: #455770;
+  width: 100vw;
+  height: 100%;
+  z-index: 1;
+  position: fixed;
+  top: 9vh;
+  text-align: center;
+}
+
+.closebtn {
+  padding: 5px;
+  font-size: 1.3em;
+  margin: 8px;
+  background-color: crimson;
+}
+
+.closebtn:hover {
+  background-color: #e98e95;
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Character from "./Character";
 /*
 openModal={openModal}
@@ -8,14 +8,7 @@ openModal={openModal}
                 earth={earth}
                 air={air}
 */
-type ModalProps = {
-    fire: {}[],
-    water: {}[],
-    earth: {}[],
-    air: {}[],
-    openModal: boolean | string,
-    setOpenModal: React.Dispatch<React.SetStateAction<string | boolean>>
-}
+
 
 type CharacterProps = {
     title: string,
@@ -26,11 +19,40 @@ type CharacterProps = {
     intelligence: number
 }
 
+type ModalProps = {
+    fire: CharacterProps[],
+    water: CharacterProps[],
+    earth: CharacterProps[],
+    air: CharacterProps[],
+    openModal: boolean | string,
+    setOpenModal: React.Dispatch<React.SetStateAction<string | boolean>>
+}
+
 export default function Modal({ fire, water, earth, air, openModal, setOpenModal} : ModalProps) {
+    const [contentType, setContentType] = useState<CharacterProps[] | []>([])
+    useEffect(() => {
+        switch(openModal) {
+            case 'fire':
+                setContentType(fire)
+                break;
+            case 'water':
+                setContentType(water)
+                break;
+            case 'earth':
+                setContentType(earth)
+                break;
+            case 'air':
+                setContentType(air)
+                break;
+        }
+    }, [air, earth, fire, openModal, water])
+
+    
     if(!openModal) return null
-    const contentType = openModal
+    
+
     let content
-    content = [contentType].map((c : CharacterProps) => {
+    content = contentType.map((c : CharacterProps) => {
         return (<Character
         title={c.title}
         type={c.type}
@@ -47,7 +69,7 @@ export default function Modal({ fire, water, earth, air, openModal, setOpenModal
 
     return (
         <div className="modal">
-            <button className="closebtn" onClick={() => props.setOpenModal(false)}>Close</button>
+            <button className="closebtn" onClick={() => setOpenModal(false)}>Close</button>
             <div className="characters">
                 {content}
             </div>

@@ -44,23 +44,23 @@ export default function CCreation({ setCharacter} : CreationProps) {
 
     function handleStatChange(event : React.ChangeEvent<HTMLInputElement>) {
         const e = event.target
-        const value: number = e.value
+        const value: number = +e.value
         const stat = event.target.name
-        if(event.target.value > ref.current[stat]) {
+        if(value > ref.current[stat as keyof typeof ref.current]) {
             //decrease
-            const num = value - ref.current[stat]
+            const num = value - ref.current[stat as keyof typeof ref.current]
             let checkPoints = points
             checkPoints -= num
             if(checkPoints <= -1) {
                 return
             }
             setPoints(prevState => prevState -= num)
-            ref.current[stat] = value
-        } else if(event.target.value < ref.current[stat]) {
+            ref.current[stat as keyof typeof ref.current] = value
+        } else if(value < ref.current[stat as keyof typeof ref.current]) {
             //increase
-            const num = ref.current[stat] - value 
+            const num = ref.current[stat as keyof typeof ref.current] - value 
             setPoints(prevState => prevState += num)
-            ref.current[stat] = value
+            ref.current[stat as keyof typeof ref.current] = value
         }
         setFormData(prevState => {
             return {
@@ -116,8 +116,8 @@ export default function CCreation({ setCharacter} : CreationProps) {
                 <label htmlFor='speed'>Speed: </label>
                 <input 
                     type='number'
-                    min='0'
-                    max='100'
+                    min={0}
+                    max={100}
                     name="speed"
                     value={formData.speed}
                     onChange={handleStatChange}
